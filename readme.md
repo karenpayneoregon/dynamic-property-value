@@ -4,4 +4,4 @@ Provides a language extension method to change a property value in a class insta
 
 # Article
 
-Microsoft TechNet: Dynamically set property value in a class (C#)
+Microsoft TechNet: [Dynamically set property value in a class (C#)](https://social.technet.microsoft.com/wiki/contents/articles/54296.dynamically-set-property-value-in-a-class-c.aspx)
