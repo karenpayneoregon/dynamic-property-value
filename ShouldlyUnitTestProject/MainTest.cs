@@ -53,6 +53,7 @@ namespace ShouldlyUnitTestProject
         }
 
         [TestMethod]
+        [TestTraits(Trait.SettingsClass)]
         public void Settings_JoinedChangeTest()
         {
             var expectedValue = new DateTime(Now.Year, Now.Month, Now.Day -1);
