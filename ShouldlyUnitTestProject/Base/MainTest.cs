@@ -84,6 +84,8 @@ namespace ShouldlyUnitTestProject
                 Active = false, 
                 Joined = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day)
             };
+
+        public Person SinglePerson => new Person() {Id = 1,FirstName = "Bob", LastName = "Gallagher"};
     }
 
 }

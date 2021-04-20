@@ -21,7 +21,6 @@ namespace ShouldlyUnitTestProject
             
             setting.UserName.ShouldBe(expectedValue);
             
-            
         }
         [TestMethod]
         [TestTraits(Trait.SettingsClass)]
@@ -64,5 +63,17 @@ namespace ShouldlyUnitTestProject
             setting.Joined.ShouldBe(expectedValue);
             
         }
+
+        [TestMethod]
+        [TestTraits(Trait.PersonClass)]
+        public void Person_Names()
+        {
+            var expectedValue = "Tim";
+
+            var person = SinglePerson;
+            person.SetValue("FirstName","Tim");
+            person.FirstName.ShouldBe(expectedValue);
+        }
+
     }
 }
