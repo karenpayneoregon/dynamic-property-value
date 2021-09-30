@@ -1,13 +1,20 @@
-using System;
+﻿using System;
+using System.Diagnostics;
+using System.Linq.Expressions;
 using System.Reflection;
+using System.Threading.Tasks;
 using BaseLibrary;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using ShouldlyUnitTestProject.Base;
+using ShouldlyUnitTestProject.Classes;
 using static System.DateTime;
 
 namespace ShouldlyUnitTestProject
 {
+    /// <summary>
+    /// Test <see cref="Extensions.SetValue()"/>
+    /// </summary>
     [TestClass]
     public partial class MainTest : TestBase
     {
@@ -121,7 +128,9 @@ namespace ShouldlyUnitTestProject
         }
 
         /// <summary>
-        /// This test assumes case is not important so we use an overload of ShouldBe to ignore case
+        /// This test assumes case is not important so we use an overload of ShouldBe to ignore case.
+        /// See also <see cref="PropertyNameTest"/> which gives good reason not to use ignore case
+        /// unless there are property names such as firstname then you are rightful in slapping that developer ¯\\_(ツ)_/¯
         /// </summary>
         [TestMethod]
         [TestTraits(Trait.PersonClass)]
@@ -135,6 +144,9 @@ namespace ShouldlyUnitTestProject
             
         }
 
+        /// <summary>
+        /// Test with a property name not in <see cref="Person"/> class
+        /// </summary>
         [TestMethod]
         [TestTraits(Trait.PersonClass)]
         public void Person_BrokenUnknownProperty()
@@ -147,6 +159,15 @@ namespace ShouldlyUnitTestProject
 
         }
 
+        /// <summary>
+        /// Extensions test - not using fluent assertions
+        ///
+        /// Note <see cref="Extensions.IsValidPropertyIgnoreCase()"/>
+        /// It's here to determine if a property exists in a class using
+        /// a string value yet if someone say had FirstName and firstName
+        /// properties we have a conflict. Now if someone did code these
+        /// two properties feel free to slap them.
+        /// </summary>
         [TestMethod]
         [TestTraits(Trait.ValidatePropertyNameExtensions)]
         public void PropertyNameTest()
@@ -165,6 +186,39 @@ namespace ShouldlyUnitTestProject
             
         }
 
+        [TestMethod]
+        [TestTraits(Trait.PlaceHolder)]
+        public void GetPropertyValueStaticTest()
+        {
+            DateTime now = Now;
+            int min = now.GetPropValue<int>("TimeOfDay.Minutes");
+            int hrs = now.GetPropValue<int>("TimeOfDay.Hours");
 
+            Console.WriteLine($"Hour: {hrs} minutes: {min}");
+        }
+
+        /// <summary>
+        /// Mock DateTime
+        /// </summary>
+        [TestMethod]
+        [TestTraits(Trait.MockDateTime)]
+        public void ClockMocked()
+        {
+
+            Clock.Set(() => new DateTime(Now.Year, 6, 14, 13, 23, 0));
+
+            // timely pause for validation
+            Task.Delay(2000).Wait();
+            var now = Clock.UtcNow;
+
+            Assert.AreEqual(now, new DateTime(Now.Year, 6, 14, 13, 23, 0));
+
+            int min = now.GetPropValue<int>("TimeOfDay.Minutes");
+            int hrs = now.GetPropValue<int>("TimeOfDay.Hours");
+            
+            Assert.AreEqual(now.Hour, hrs);
+            Assert.AreEqual(now.Minute, min);
+
+        }
     }
 }
