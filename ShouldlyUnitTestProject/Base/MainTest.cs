@@ -37,11 +37,11 @@ namespace ShouldlyUnitTestProject
         {
             if (TestContext.TestName == "TestMethod1")
             {
-                Console.WriteLine($"TestCleanup: {TestContext.TestName}");
+                
             }
             else
             {
-                Console.WriteLine("In test cleanup but don't care what test it is.");
+                
             }
 
         }

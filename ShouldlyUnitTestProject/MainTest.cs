@@ -1,14 +1,20 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
 using System.Threading.Tasks;
 using BaseLibrary;
+using DeepEqual;
+using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shouldly;
 using ShouldlyUnitTestProject.Base;
 using ShouldlyUnitTestProject.Classes;
 using static System.DateTime;
+
+
+
 
 namespace ShouldlyUnitTestProject
 {
@@ -159,6 +165,37 @@ namespace ShouldlyUnitTestProject
 
         }
 
+        [TestMethod]
+        [TestTraits(Trait.PersonClass)]
+        public void PersonEqualsTest()
+        {
+            Person mainPerson = SinglePerson;
+            Person otherPerson = SinglePerson;
+
+            Assert.IsTrue(mainPerson.IsDeepEqual(otherPerson));
+
+            otherPerson.Id = 5;
+            Assert.IsFalse(mainPerson.IsDeepEqual(otherPerson));
+
+            otherPerson.FirstName = "Jim";
+            //mainPerson.WithDeepEqual(otherPerson).SkipDefault<Person>().IgnoreSourceProperty(x => x.Id).Assert();
+
+            var comparison = new ComparisonBuilder()
+                .IgnoreProperty<Person>(x => x.Id)
+                .Create();
+
+            DeepAssert.AreNotEqual(mainPerson, otherPerson, comparison);
+
+            otherPerson.Id = mainPerson.Id;
+            otherPerson.FirstName = mainPerson.FirstName;
+
+            Assert.IsTrue(mainPerson.IsDeepEqual(otherPerson));
+
+
+
+        }
+
+
         /// <summary>
         /// Extensions test - not using fluent assertions
         ///
@@ -187,7 +224,7 @@ namespace ShouldlyUnitTestProject
         }
 
         [TestMethod]
-        [TestTraits(Trait.PlaceHolder)]
+        [TestTraits(Trait.ValidatePropertyNameExtensions)]
         public void GetPropertyValueStaticTest()
         {
             DateTime now = Now;
