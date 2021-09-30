@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -37,5 +38,25 @@ namespace BaseLibrary
                 propertyInfo.SetValue(sender, safeValue, null);
             }
         }
+
+        /// <summary>
+        /// Determine if a property is in a class case sensitive
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sender"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static bool IsValidProperty<T>(this T sender, string propertyName) => 
+            typeof(Person).GetProperties().FirstOrDefault(item => item.Name == propertyName) is not  null;
+
+        /// <summary>
+        /// Determine if a property is in a class case sensitive insensitive
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="sender"></param>
+        /// <param name="propertyName"></param>
+        /// <returns></returns>
+        public static bool IsValidPropertyIgnoreCase<T>(this T sender, string propertyName) =>
+            typeof(Person).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase) is not null;
     }
 }

@@ -12,7 +12,8 @@ namespace ShouldlyUnitTestProject.Base
         /// Test on Settings class
         /// </summary>
         SettingsClass,
-        PersonClass
+        PersonClass,
+        ValidatePropertyNameExtensions
     }
     /// <summary>
     /// Declarative class for using Trait enum about for traits on test method.

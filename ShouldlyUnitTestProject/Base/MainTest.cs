@@ -10,13 +10,8 @@ using BaseLibrary;
 // ReSharper disable once CheckNamespace - do not change
 namespace ShouldlyUnitTestProject
 {
-    public partial class MainTest : IDisposable
+    public partial class MainTest
     {
-
-        public MainTest()
-        {
-            Console.WriteLine($"New constructor for {nameof(MainTest)}");
-        }
 
         /// <summary>
         /// Perform initialization before each test runs
@@ -26,6 +21,7 @@ namespace ShouldlyUnitTestProject
         /// For synchronous preparation
         /// * Remove the async modifier
         /// * Remove the line with await Task.Delay(0);
+        /// * We can do TestContext.TestName == "TestMethod1" better
         /// </remarks>
         [TestInitialize]
         public async Task Init()
@@ -54,25 +50,9 @@ namespace ShouldlyUnitTestProject
         /// </summary>
         /// <param name="testContext"></param>
         [ClassInitialize()]
-        public static void MyClassInitialize(TestContext testContext)
+        public static void Initialize(TestContext testContext)
         {
             TestResults = new List<TestContext>();
-        }
-        /// <summary>
-        /// Here is where any clean operations are performed for this class
-        /// </summary>
-        /// <returns></returns>
-        [ClassCleanup()]
-        public static async Task ClassCleanup()
-        {
-            await Task.Delay(0);
-        }
-        /// <summary>
-        /// Optional event to clean up any objects that are not managed by the framework
-        /// </summary>
-        public void Dispose()
-        {
-            Console.WriteLine($"Disposing at {DateTime.Now:hh:mm:ss:fff}");
         }
 
         public Settings SingleSetting() => 
@@ -85,7 +65,12 @@ namespace ShouldlyUnitTestProject
                 Joined = new DateTime(DateTime.Now.Year,DateTime.Now.Month,DateTime.Now.Day)
             };
 
-        public Person SinglePerson => new Person() {Id = 1,FirstName = "Bob", LastName = "Gallagher"};
+        public Person SinglePerson => new ()
+        {
+            Id = 1,
+            FirstName = "Bob", 
+            LastName = "Gallagher"
+        };
     }
 
 }
