@@ -20,8 +20,10 @@ namespace BaseLibrary.Classes
                 OnPropertyChanged();
             }
         }
+
+        public DateTime CurrentDateTime { get; set; } = DateTime.Now;
         public string Age
-            => BirthDate?.Age(DateTime.Now).YearsMonthsDays;
+            => BirthDate?.Age(CurrentDateTime).YearsMonthsDays;
 
         /// <summary>
         /// For teaching to show underlying properties of <see cref="Helpers.Age"/>
