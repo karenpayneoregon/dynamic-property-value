@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BaseLibrary;
+using BaseLibrary.Classes;
 
 
 // ReSharper disable once CheckNamespace - do not change
@@ -54,7 +55,7 @@ namespace ShouldlyUnitTestProject
         {
             TestResults = new List<TestContext>();
         }
-
+        
         public Settings SingleSetting() => 
             new()
             {
@@ -72,5 +73,7 @@ namespace ShouldlyUnitTestProject
             LastName = "Gallagher"
         };
     }
+
+
 
 }

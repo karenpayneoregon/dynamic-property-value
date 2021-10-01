@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace BaseLibrary
+namespace BaseLibrary.Classes
 {
     public class Settings
     {

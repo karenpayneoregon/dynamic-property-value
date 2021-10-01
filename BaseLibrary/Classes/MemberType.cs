@@ -1,4 +1,4 @@
-﻿namespace BaseLibrary
+﻿namespace BaseLibrary.Classes
 {
     public enum MemberType
     {
