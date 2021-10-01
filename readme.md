@@ -24,6 +24,18 @@ Now, we know what is a unit test and why we should write them. The next question
  
 - **Tests should validate themselves**. We shouldn't debug our tests to make sure they passed or failed. Each test should determine the success or failure of the tested behavior. Imagine we have hundreds of tests and to make sure they pass, we have to debug every one of them. What's the point, then?
 
+
+# Dates/time
+
+Date and time objects can be challenging when there is a need to work with past and future dates which reply on testing with the current date time. The current DateTime comes from DateTime.Now and cannot be altered.
+
+
+Dates and times can be mocked to test with in test methods yet when there is a method which has DateTime.Now for computations mocking is not possible although there are services that can mock DateTime.Now such as JustMock. 
+
+# Test data
+
+Most developers will mock data rather than use a live development database. There are pros and cons such as test take longer with live data while in some cases Entity Framework Core will not act the same with mocked verses live data. Then there is clean-up with live data long with multiple users hitting the same records at the same time which can affect testing outcomes.
+
 # Article
 
 :open_book: Microsoft TechNet: [Dynamically set property value in a class (C#)](https://social.technet.microsoft.com/wiki/contents/articles/54296.dynamically-set-property-value-in-a-class-c.aspx)
