@@ -31,6 +31,10 @@ Now, we know what is a unit test and why we should write them. The next question
 # Resources
 
 - [QUint](https://qunitjs.com/) JavaScript testing framework.
+- Pluralsight 
+  - [Implementing C# Unit Testing Using Visual Studio 2019 and .NET 5](https://app.pluralsight.com/library/courses/basic-unit-testing-csharp-developers/table-of-contents)
+  - [Creating Automated Browser Tests with Selenium in C#](https://app.pluralsight.com/library/courses/creating-automated-browser-tests-selenium-c-sharp/table-of-contents)
+  - [Improving Unit Tests with Fluent Assertions](https://app.pluralsight.com/library/courses/fluent-assertions-improving-unit-tests/table-of-contents)
 
 
 # Microsoft documentation
@@ -91,7 +95,7 @@ For comparing complex objects use the following.
 
 - **NuGet package** [CompareNETObjects](https://www.nuget.org/packages/CompareNETObjects) for deep compares on objects and list of objects.
   - [Project site](https://github.com/GregFinzer/Compare-Net-Objects)
-  - # Microsoft documentation
+  
 - [Unit test basics](https://docs.microsoft.com/en-us/visualstudio/test/unit-test-basics?view=vs-2019)
 - [Live Unit Testing](https://docs.microsoft.com/en-us/visualstudio/test/live-unit-testing-intro?view=vs-2019)
 - [web load testing](https://docs.microsoft.com/en-us/visualstudio/test/quickstart-create-a-load-test-project?view=vs-2019)

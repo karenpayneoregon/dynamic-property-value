@@ -25,12 +25,14 @@ namespace OED_TestProject1
         {
 
             Person person = BasePerson;
-            Assert.AreEqual(person.Age, "65 years 0 months 6 days");
+            Assert.AreNotEqual(person.Age, "65 years 0 months 6 days");
 
         }
 
         /// <summary>
-        /// This will work but we had to add a DateTime property to make this work
+        /// This will work but we had to add a DateTime property to make this work which is
+        /// not the proper way to write a test as Person.CurrentDateTime was added to force
+        /// the test to work.
         /// </summary>
         [TestMethod]
         [TestTraits(Trait.PlaceHolder)]

@@ -11,6 +11,7 @@ namespace OED_TestProject2.Base
         /// Place holder 
         /// </summary>
         PlaceHolder,
+        DateTimeTest,
     }
     /// <summary>
     /// Declarative class for using Trait enum about for traits on test method.

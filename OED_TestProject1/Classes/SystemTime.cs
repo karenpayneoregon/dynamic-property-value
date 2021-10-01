@@ -1,6 +1,8 @@
 using System;
 
 /*
+ * Not used, here for discussions
+ *
  * SystemTime.SetDateTime(DateTime.Now.AddYears(5));
  * Console.WriteLine(SystemTime.Now().Date);
  * SystemTime.ResetDateTime();
@@ -18,14 +20,14 @@ namespace OED_TestProject1.Classes
 
         /// <summary> Set time to return when SystemTime.Now() is called.
         /// </summary>
-        public static void SetDateTime(DateTime dateTimeNow)
+        public static void Set(DateTime dateTimeNow)
         {
             Now = () => dateTimeNow;
         }
 
         /// <summary> Resets SystemTime.Now() to return DateTime.Now.
         /// </summary>
-        public static void ResetDateTime()
+        public static void Reset()
         {
             Now = () => DateTime.Now;
         }

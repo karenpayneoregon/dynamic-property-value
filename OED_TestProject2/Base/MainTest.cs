@@ -17,7 +17,7 @@ namespace OED_TestProject2
         [TestInitialize]
         public void Initialization()
         {
-            if (TestContext.TestName == nameof(TestMethod1))
+            if (TestContext.TestName == nameof(SequenceEquals))
             {
                 // TODO
             }
@@ -29,7 +29,7 @@ namespace OED_TestProject2
         [TestCleanup]
         public void TestCleanup()
         {
-            if (TestContext.TestName == nameof(TestMethod1))
+            if (TestContext.TestName == nameof(SequenceEquals))
             {
                 // TODO
             }
