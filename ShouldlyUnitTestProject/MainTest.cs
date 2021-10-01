@@ -37,12 +37,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.SettingsClass)]
         public void Settings_UserNameChangeTest()
         {
-            string expectedValue = "Anne";
-            
-            var setting = SingleSetting();
-            setting.SetValue("UserName", "Anne");
-            
-            setting.UserName.ShouldBe(expectedValue);
+
             
         }
 
@@ -56,10 +51,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.SettingsClass)]
         public void Settings_ContactIdentifierChangeTest()
         {
-            var expectedValue = 2;
-            var setting = SingleSetting();
-            setting.SetValue("ContactIdentifier", 2);
-            setting.ContactIdentifier.ShouldBe(expectedValue);
+
         }
 
         /// <summary>
@@ -70,10 +62,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.SettingsClass)]
         public void Settings_MemberTypeChangeTest()
         {
-            var expectedValue = MemberType.Bronze;
-            var setting = SingleSetting();
-            setting.SetValue("MemberType", MemberType.Bronze);
-            setting.MemberType.ShouldBe(expectedValue);
+
         }
 
         /// <summary>
@@ -84,9 +73,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.SettingsClass)]
         public void Settings_ActiveChangeTest()
         {
-            var setting = SingleSetting();
-            setting.SetValue("Active", true);
-            setting.Active.ShouldBe(true);
+
         }
 
         /// <summary>
@@ -97,12 +84,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.SettingsClass)]
         public void Settings_JoinedChangeTest()
         {
-            var expectedValue = new DateTime(Now.Year, Now.Month, Now.Day -1);
 
-            var setting = SingleSetting();
-            setting.Joined = new DateTime(Now.Year, Now.Month, Now.Day - 1);
-            setting.SetValue("Joined", new DateTime(Now.Year, Now.Month, Now.Day - 1));
-            setting.Joined.ShouldBe(expectedValue);
             
         }
 
@@ -114,11 +96,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.PersonClass)]
         public void Person_FirstNameCheck()
         {
-            var expectedValue = "Tim";
 
-            var person = SinglePerson;
-            person.SetValue("FirstName","Tim");
-            person.FirstName.ShouldBe(expectedValue);
         }
 
         /// <summary>
@@ -128,11 +106,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.PersonClass)]
         public void Person_FirstNameCheckCaseInvalid()
         {
-            var expectedValue = "tim";
-
-            var person = SinglePerson;
-            person.SetValue("FirstName", "Tim");
-            person.FirstName.ShouldNotBe(expectedValue);
+          
         }
 
         /// <summary>
@@ -144,11 +118,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.PersonClass)]
         public void Person_FirstNameCheckIgnoreCase()
         {
-            var expectedValue = "tim";
-            var person = SinglePerson;
 
-            person.SetValue("FirstName", "Tim");
-            person.FirstName.ShouldBe(expectedValue, StringCompareShould.IgnoreCase);
             
         }
 
@@ -159,11 +129,6 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.PersonClass)]
         public void Person_BrokenUnknownProperty()
         {
-            var expectedValue = "tim";
-            var person = SinglePerson;
-
-            person.SetValue("SomePropertyDoesNotExists", "Tim");
-            person.FirstName.ShouldNotBe(expectedValue);
 
         }
 
@@ -171,30 +136,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.PersonClass)]
         public void PersonEqualsTest()
         {
-            Person mainPerson = SinglePerson;
-            Person otherPerson = SinglePerson;
-
-            Assert.IsTrue(mainPerson.IsDeepEqual(otherPerson));
-
-            otherPerson.Id = 5;
-            Assert.IsFalse(mainPerson.IsDeepEqual(otherPerson));
-
-            otherPerson.FirstName = "Jim";
-            //mainPerson.WithDeepEqual(otherPerson).SkipDefault<Person>().IgnoreSourceProperty(x => x.Id).Assert();
-
-            var comparison = new ComparisonBuilder()
-                .IgnoreProperty<Person>(x => x.Id)
-                .Create();
-
-            DeepAssert.AreNotEqual(mainPerson, otherPerson, comparison);
-
-            otherPerson.Id = mainPerson.Id;
-            otherPerson.FirstName = mainPerson.FirstName;
-
-            Assert.IsTrue(mainPerson.IsDeepEqual(otherPerson));
-
-
-
+    
         }
 
 
@@ -211,17 +153,6 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.ValidatePropertyNameExtensions)]
         public void PropertyNameTest()
         {
-            // property name does not exist
-            Assert.IsFalse(SinglePerson.IsValidProperty("FirstName11"));
-
-            // property name does exist case sensitive
-            Assert.IsTrue(SinglePerson.IsValidProperty("FirstName"));
-
-            // property name does not exists, casing
-            Assert.IsFalse(SinglePerson.IsValidProperty("firstName"));
-
-            // property name does exists, casing ignored
-            Assert.IsTrue(SinglePerson.IsValidPropertyIgnoreCase("firstname"));
             
         }
 
@@ -229,11 +160,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.ValidatePropertyNameExtensions)]
         public void GetPropertyValueStaticTest()
         {
-            DateTime now = Now;
-            int min = now.GetPropValue<int>("TimeOfDay.Minutes");
-            int hrs = now.GetPropValue<int>("TimeOfDay.Hours");
 
-            Console.WriteLine($"Hour: {hrs} minutes: {min}");
         }
 
         /// <summary>
@@ -243,20 +170,6 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.MockDateTime)]
         public void ClockMocked()
         {
-
-            Clock.Set(() => new DateTime(Now.Year, 6, 14, 13, 23, 0));
-
-            // timely pause for validation
-            Task.Delay(2000).Wait();
-            var now = Clock.UtcNow;
-
-            Assert.AreEqual(now, new DateTime(Now.Year, 6, 14, 13, 23, 0));
-
-            int min = now.GetPropValue<int>("TimeOfDay.Minutes");
-            int hrs = now.GetPropValue<int>("TimeOfDay.Hours");
-            
-            Assert.AreEqual(now.Hour, hrs);
-            Assert.AreEqual(now.Minute, min);
 
         }
     }

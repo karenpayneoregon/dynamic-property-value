@@ -38,6 +38,12 @@ namespace BaseLibrary.Extensions
             }
         }
 
+        /// <summary>
+        /// Get property value by property name as string
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="name"></param>
+        /// <returns></returns>
         public static object GetPropValue(this object sender, string name)
         {
             foreach (var part in name.Split('.'))
@@ -91,10 +97,6 @@ namespace BaseLibrary.Extensions
         public static bool IsValidPropertyIgnoreCase<T>(this T sender, string propertyName) =>
             typeof(Person).GetProperty(propertyName, BindingFlags.Public | BindingFlags.Instance | BindingFlags.IgnoreCase) is not null;
 
-        public static string GetPropertyName<T, TReturn>(this Expression<Func<T, TReturn>> expression)
-        {
-            var body = (MemberExpression)expression.Body;
-            return body.Member.Name;
-        }
+
     }
 }

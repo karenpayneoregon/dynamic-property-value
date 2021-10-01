@@ -5,6 +5,9 @@ using Shouldly;
 
 namespace ShouldlyUnitTestProject.Classes
 {
+    /// <summary>
+    /// Extensions for DeepEquals
+    /// </summary>
     public static class DeepAssert
     {
         public static void AreEqual(object actual, object expected, IComparison comparison = null)
