@@ -21,7 +21,7 @@ namespace OED_TestProject2.Classes
         static AsyncLocal<Func<DateTime>> _override = new();
 
         /// <summary>
-        /// Get mocked <see cref="DateTime"/>
+        /// Get mocked Universal Time Coordinated  <see cref="DateTime"/>
         /// </summary>
         public static DateTime UtcNow 
             => (_override.Value ?? _utcNow)();

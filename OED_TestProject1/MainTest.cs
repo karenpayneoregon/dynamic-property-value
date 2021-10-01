@@ -24,9 +24,6 @@ namespace OED_TestProject1
         public void TestMethod1()
         {
 
-            Person person = BasePerson;
-            Assert.AreNotEqual(person.Age, "65 years 0 months 6 days");
-
         }
 
         /// <summary>
@@ -39,13 +36,6 @@ namespace OED_TestProject1
         public void TestMethod2()
         {
 
-            Clock.Set(() => new DateTime(2021, 9, 30));
-            DateTime currentDateTime = Clock.UtcNow;
-
-            Person person = BasePerson;
-            person.CurrentDateTime = currentDateTime;
-            Console.WriteLine(person.Age);
-            Assert.AreEqual(person.Age, "65 years 0 months 6 days");
 
         }
 
