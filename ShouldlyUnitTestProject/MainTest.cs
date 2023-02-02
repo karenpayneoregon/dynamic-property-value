@@ -87,7 +87,7 @@ namespace ShouldlyUnitTestProject
         [TestTraits(Trait.SettingsClass)]
         public void Settings_JoinedChangeTest()
         {
-            var expectedValue = new DateTime(Now.Year, Now.Month, Now.Day -1);
+            DateTime expectedValue = new (Now.Year, Now.Month, Now.Day -1);
 
             var setting = SingleSetting();
             setting.Joined = new DateTime(Now.Year, Now.Month, Now.Day - 1);
@@ -120,7 +120,7 @@ namespace ShouldlyUnitTestProject
         {
             var expectedValue = "tim";
 
-            var person = SinglePerson;
+            Person person = SinglePerson;
             person.SetValue("FirstName", "Tim");
             person.FirstName.ShouldNotBe(expectedValue);
         }
@@ -135,10 +135,11 @@ namespace ShouldlyUnitTestProject
         public void Person_FirstNameCheckIgnoreCase()
         {
             var expectedValue = "tim";
-            var person = SinglePerson;
+            Person person = SinglePerson;
 
-            person.SetValue("FirstName", "Tim");
-            person.FirstName.ShouldBe(expectedValue, StringCompareShould.IgnoreCase);
+            person.SetValue(nameof(Person.FirstName), "Tim");
+            person.FirstName.ShouldBe(expectedValue, 
+                StringCompareShould.IgnoreCase);
             
         }
 
@@ -150,7 +151,7 @@ namespace ShouldlyUnitTestProject
         public void Person_BrokenUnknownProperty()
         {
             var expectedValue = "tim";
-            var person = SinglePerson;
+            Person person = SinglePerson;
 
             person.SetValue("SomePropertyDoesNotExists", "Tim");
             person.FirstName.ShouldNotBe(expectedValue);
@@ -182,8 +183,6 @@ namespace ShouldlyUnitTestProject
             otherPerson.FirstName = mainPerson.FirstName;
 
             Assert.IsTrue(mainPerson.IsDeepEqual(otherPerson));
-
-
 
         }
 
