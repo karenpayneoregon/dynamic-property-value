@@ -1,9 +1,8 @@
-﻿namespace BaseLibrary
+﻿namespace BaseLibrary;
+
+public enum MemberType
 {
-    public enum MemberType
-    {
-        Gold,
-        Silver,
-        Bronze 
-    }
+    Gold,
+    Silver,
+    Bronze 
 }

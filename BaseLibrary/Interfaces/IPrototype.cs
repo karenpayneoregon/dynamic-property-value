@@ -1,7 +1,6 @@
-﻿namespace BaseLibrary.Interfaces
+﻿namespace BaseLibrary.Interfaces;
+
+public interface IPrototype<T>
 {
-    public interface IPrototype<T>
-    {
-        T CreateDeepCopy();
-    }
+    T CreateDeepCopy();
 }

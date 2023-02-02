@@ -1,10 +1,4 @@
-﻿using System;
-using System.Diagnostics;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Reflection;
-using System.Threading.Tasks;
-using BaseLibrary;
+﻿using BaseLibrary;
 using DeepEqual;
 using DeepEqual.Syntax;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -12,8 +6,6 @@ using Shouldly;
 using ShouldlyUnitTestProject.Base;
 using ShouldlyUnitTestProject.Classes;
 using static System.DateTime;
-
-
 
 
 namespace ShouldlyUnitTestProject
