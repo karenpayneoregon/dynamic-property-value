@@ -15,7 +15,9 @@ namespace BaseLibrary.Classes
         /// <returns>
         /// List of month names for current culture
         /// </returns>
-        public static List<string> MonthNames() => Enumerable.Range(1, 12).Select((index) => CurrentInfo.GetMonthName(index)).ToList();
+        public static List<string> MonthNames() => Enumerable.Range(1, 12)
+            .Select((index) => CurrentInfo.GetMonthName(index))
+            .ToList();
 
 	}
 }
